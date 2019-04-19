@@ -1,0 +1,33 @@
+{% block content %}
+
+<h1> MAL Recommendations for {{name}} </h1>
+
+<form method='POST'>
+	{% csrf_token %}
+  <input type="text" name="textbox" placeholder="MyAnimeList user ID"> 
+  <input type="submit" name='action' value="Submit">
+</form>
+
+{% for show_info in rec %}
+<!--
+<h1>{{show_info.title}}</h1>
+-->
+<h1><a href={{show_info.url}}>{{show_info.title}}</a></h1>
+<h>{{show_info.title_english}}</h><br>
+<img src={{show_info.image_url}} alt={{show_info.title}} image url>
+<li>{{show_info.type}}</li>
+<li>Episodes:{{show_info.episodes}}</li>
+<li>Score:{{show_info.score}}</li>
+
+
+
+
+{% endfor %}
+<br><br><form method='POST'>
+{% csrf_token %}
+<input type="submit" name='action' value="more">
+</form>
+{% endblock %}
+
+
+
